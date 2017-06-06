@@ -1,198 +1,391 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-	<meta name="google-site-verification" content="Jt3hRHZZU0mEmCx9Qgx7h9yH6xFhjZG9lDGuTNLqaLs" />
-    <meta charset="utf-8" />
-	<title>Capacitación EUNACOM - Dra. del Castillo</title>	    
-    <meta name="description" content="Capacitación examen único Nacional de conocimientos médicos EUNACOM Chile">
-    <meta name="author" content="Draconus-Feffyta">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" href="css/kube.min.css" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
-    <link rel="stylesheet" href="css/custom.min.css" />
-    <link rel="shortcut icon" href="img/logo2.png" />
-	<link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
-	<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
-	<style>
-		.intro h1:before {
-			/* Edit this with your name or anything else */
-			content: 'preparación de exámen';
-			font-size: 52px;
-			color: rgb(166, 166, 166);
-		}
-		#map {
-		position: absolute;
-   		top: 2175px;
-    	right: 40px;
-        height: 220px;
-        width: 33%;
-        border: 3px solid #A0A0A0;
-        
-       }
-	</style>
-</head>
+    <head>
+        <meta name="google-site-verification" content="Jt3hRHZZU0mEmCx9Qgx7h9yH6xFhjZG9lDGuTNLqaLs" />
+        <meta charset="utf-8" />
+        <title>Capacitación EUNACOM - Dra. del Castillo</title>	    
+        <meta name="description" content="Capacitación examen único Nacional de conocimientos médicos EUNACOM Chile">
+        <meta name="author" content="Draconus-Feffyta">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="css/kube.min.css" />
+        <link rel="stylesheet" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" href="css/custom.min.css" />
+        <link rel="shortcut icon" href="img/logo2.png" />
+        <link href='http://fonts.googleapis.com/css?family=Playfair+Display+SC:700' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+        <style>
+            .intro h1:before {
+                /* Edit this with your name or anything else */
+                content: 'preparación de exámen';
+                font-size: 52px;
+                color: rgb(166, 166, 166);
+            }
+            #map {
+                position: absolute;
+                top: 3050px;
+                right: 60px;
+                height: 220px;
+                width: 33%;
+                border: 3px solid #A0A0A0;
+
+            }
+            .myImg {
+                border-radius: 5px;
+                cursor: pointer;
+                transition: 0.3s;
+              /* transform: rotate(90deg);*/
+              border: 2px solid #fff;
+                  
+            }
+
+            .myImg:hover {opacity: 0.7;}
+
+            /* The Modal (background) */
+            .modal {
+                display: none; /* Hidden by default */
+                position: fixed; /* Stay in place */
+                z-index: 1; /* Sit on top */
+                padding-top: 100px; /* Location of the box */
+                left: 0;
+                top: 0;
+                width: 100%; /* Full width */
+                height: 100%; /* Full height */
+                overflow: auto; /* Enable scroll if needed */
+                background-color: rgb(0,0,0); /* Fallback color */
+                background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+            }
+
+            /* Modal Content (Image) */
+            .modal-content {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+            }
+
+            /* Caption of Modal Image (Image Text) - Same Width as the Image */
+            #caption {
+                margin: auto;
+                display: block;
+                width: 80%;
+                max-width: 700px;
+                text-align: center;
+                color: #ccc;
+                padding: 10px 0;
+                height: 150px;
+            }
+
+            /* Add Animation - Zoom in the Modal */
+            .modal-content, #caption { 
+                -webkit-animation-name: zoom;
+                -webkit-animation-duration: 0.6s;
+                animation-name: zoom;
+                animation-duration: 0.6s;
+            }
+
+            @-webkit-keyframes zoom {
+                from {-webkit-transform:scale(0)} 
+                to {-webkit-transform:scale(1)}
+            }
+
+            @keyframes zoom {
+                from {transform:scale(0)} 
+                to {transform:scale(1)}
+            }
+
+            /* The Close Button */
+            .close {
+                position: absolute;
+                top: 15px;
+                right: 35px;
+                color: #f1f1f1;
+                font-size: 40px;
+                font-weight: bold;
+                transition: 0.3s;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #bbb;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            /* 100% Image Width on Smaller Screens */
+            @media only screen and (max-width: 700px){
+                .modal-content {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
 
 
-<body>
-	<!-- Navigation -->
+    <body>
+        <!-- Navigation -->
 
-	<div class="main-nav">
-		<div class="container">
-			<header class="group top-nav">
-				<div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
-				    <span class="logo">Menú</span>
-				</div>
-			    <nav id="navbar-1" class="navbar item-nav">
-				    <ul>
-				        <li class="active"><a href="#about">Acerca de mí</a></li>
-				        <li><a href="#cursos">Cursos</a></li>
-				        <li><a href="#condiciones">Condiciones generales</a></li>				        
-				        <li><a href="#valores">Valores</a></li>
-				        <li><a href="#contacto">Contacto</a></li>
-				    </ul>
-				</nav>
-			</header>
-		</div>
-	</div>
+        <div class="main-nav">
+            <div class="container">
+                <header class="group top-nav">
+                    <div class="navigation-toggle" data-tools="navigation-toggle" data-target="#navbar-1">
+                        <span class="logo">Menú</span>
+                    </div>
+                    <nav id="navbar-1" class="navbar item-nav">
+                        <ul>
+                            <li class="active"><a href="#about">Acerca de mí</a></li>
+                            <li><a href="#cursos">Cursos</a></li>
+                            <li><a href="#condiciones">Condiciones generales</a></li>				        
+                            <li><a href="#valores">Valores</a></li>
+                            <li><a href="#contacto">Contacto</a></li>
+                        </ul>
+                        <img src="img/Isologo.png" style="width:150px;height:150px;position:absolute;top:0px;left:150px">
+                    </nav>
+                </header>
+            </div>
+        </div>
 
-	<!-- Introduction -->
-	<div class="intro section" id="about">
-		<div class="container">
-			<p style="font-size:20px"><b>Hola, soy Bárbara del Castillo Ruiz</b></p>
-			<div class="units-row units-split wrap">
-				<div class="unit-20">
-					<img src="img/logo.jpg" alt="Avatar">
-				</div>
-				<div class="unit-80">
-					<h1><span id="typed"></span></h1>					
-				</div>
-				<p>
-					<p>Soy médico graduada con distinción en Universidad de Chile, año 2009. RCM (Registro Colegio Médico) 28038-0.<p>
-					<p>Naci y creci hasta los 10 años en Venezuela, para luego venir a Chile donde complete mi educación básica, media y superior<p>
-					<p>Experiencia  laboral de 7 años ininterrumpidos tanto en el sector público y privado, con énfasis en los últimos años en medicina laboral y minería. Poseo experiencia en clases, desde preparación de ciencias para PSU ( prueba de selección única de ingreso a la universidad), escuelas de verano de ciencias de universidad de Chile, instructora practica y teórica  para la carrera de medicina y fonoaudiología en traumatología , neurología , semiología y medicina .</p>
-					<p>Mi idea es dar los conocimientos  y métodos necesarios para lograr un buen rendimiento de EUNACOM,  (Examen Único Nacional de Conocimiento Médicos), que es el sistema por el cual la Universidad de Chile revalida los títulos de médicos obtenidos en el extranjero. Este requisito es solicitado para poder trabajar en el sistema público y cada vez más en el privado, tanto para médicos chilenos como extranjeros.</p>
-					<p>Mi sistema de estudio consta de entrega de material, pruebas periódicas acumulativas en contenido y dificultad, garantizando una enseñanza personalizada, de aprox. 15 personas por curso, para así resolver dudas y preguntas adecuadamente. Los contenidos vistos durante el curso son de mi autoría.</p>
-				</p>				
-			</div>
-		</div>
-	</div>
-   
-    <!-- Cursos -->
-	<div class="award section second" id="cursos">
-		<div class="container">
-			<h1>Cursos</h1>
-			<p>Se impartirán 3 cursos de entre 15 - 20 personas cada uno, de 8 horas semanales, en los siguientes horarios:
-				<li>Martes y jueves: 09:00-13:00 hrs</li>
-				<li>Miércoles- viernes: 09:00-13:00 hrs</li>
-				<li>Sábado: 09:00-18:00 hrs</li>
-			</p>	
-			<p>Incluye: el material, Coffee Break y 45 min de asesoría por cada alumno para repasar un tema a elección ( por una vez durante el curso) , dia y lugar a coordinar por Bárbara Del Castillo y alumno/a.</p>
-			<p><b>Inicio en el segundo semestre del 2017 (desde el 1 de Agosto a 9 de Diciembre)</b></p>
-		</div>
-	</div>
-<!-- Technical Skills -->
-	<div class="skills section second" id="valores">
-		<div class="container">
-			<h1>Valores del curso</h1>
-			<p>
-				<li>Pago contado en transferencia bancaria o depósito en efectivo: $710.000 pesos</li>
-				<li>Pago con tarjeta de crédito: $810.000 pesos</li>
+        <!-- Introduction -->
+        <div class="intro section" id="about">
+            <div class="container">
+                <p style="font-size:20px"><b>Hola, soy Bárbara del Castillo Ruiz</b></p>
+                <div class="units-row units-split wrap">
+                    <div class="unit-20">
+                        <img src="img/logo.jpg" alt="Avatar">
+                    </div>
+                    <div class="unit-80">
+                        <h1><span id="typed"></span></h1>					
+                    </div>				
+                    <p>Soy médico graduada con distinción en Universidad de Chile, año 2009. RCM (Registro Colegio Médico) 28038-0.</p>
+                    <p>Nací y crecí hasta los 10 años en Venezuela, para luego venir a Chile donde completé mi educación básica, media y superior</p>
+                    <p>Poseo experiencia  laboral de 7 años ininterrumpidos tanto en el sector público y privado, con énfasis en los últimos años en medicina laboral y minería. Poseo experiencia en clases, desde preparación de ciencias para PSU ( prueba de selección única de ingreso a la universidad), escuelas de verano de ciencias de universidad de Chile, instructora practica y teórica  para la carrera de medicina y fonoaudiología en traumatología , neurología , semiología y medicina .</p>
+                    <p>Mi idea es dar los conocimientos  y métodos necesarios para lograr un buen rendimiento de EUNACOM,  (Examen Único Nacional de Conocimiento Médicos), que es el sistema por el cual la Universidad de Chile revalida los títulos de médicos obtenidos en el extranjero. Este requisito es solicitado para poder trabajar en el sistema público y cada vez más en el privado, tanto para médicos chilenos como extranjeros.</p>
+                    <p>Mi sistema de estudio consta de entrega de material, pruebas periódicas acumulativas en contenido y dificultad, garantizando una enseñanza personalizada, de aprox. 15 personas por curso, para así resolver dudas y preguntas adecuadamente. Los contenidos vistos durante el curso son de mi autoría.</p>
 
-			</p>
-		</div>
-	</div>
+                </div>
+            </div>
+        </div>
 
-	<!-- Condiciones -->
-	<div class="work section second" id="condiciones">
-		<div class="container">
-			<h1>Condiciones<br>generales</h1>
-			<p>Los cursos constan de 8 horas semanales cada uno (3 cursos en total), según el temario el cual será entregado una vez inscrito junto con la factura. Este temario podría sufrir variaciones durante el semestre las que se informarán con anticipación.
-				<li>Las clases las realizará Dra. Bárbara Del Castillo Ruiz.</li>
-				<li>El material será enviado semanalmente a los correos electronicos de los alumnos inscritos.</li>
-				<li>La realización del curso no asegura la aprobación de EUNACOM.</li>
-			</p>
-			<p>Para poder acceder a un cupo del curso, se deberá cancelar la totalidad de su valor mediante trasferencia electronica de fondos (TEF), depósito bancario o tarjeta de crédito. No se aceptan cheques.</p>
-			<p>Una vez cancelado el curso, en caso que el alumno tuviera que retirarse o abandonar, no se hará devolución del dinero pagado, pero seguirá recibiendo la información via e-mail y el cupo se respetará durante todo la jornada pudiendo transferir su lugar a otro alumno o alumna previo acuerdo con Bárbara Del Castillo.</p>
+        <div class="award section second" id="dependencias">
+            <div class="container">
+                <h1>Dependencias</h1>
+                <!-- Trigger the Modal -->
+                <img class="myImg" id="myImg" src="img/IMG_3229.JPG" alt="Dependencies" width="200" height="150"> 
+                <img class="myImg" id="myImg2" src="img/IMG_3231.JPG" alt="Dependencies" width="200" height="150"> 
+                <img class="myImg" id="myImg3" src="img/IMG_3233.JPG" alt="Dependencies" width="200" height="200"> 
+                <img class="myImg" id="myImg4" src="img/IMG_3234.JPG" alt="Dependencies" width="200" height="200"> 
+                <img class="myImg" id="myImg5" src="img/IMG_3236.JPG" alt="Dependencies" width="200" height="200"> 
+                <img class="myImg" id="myImg6" src="img/IMG_3238.JPG" alt="Dependencies" width="200" height="200" style="transform: rotate(0deg);"> 
+                <img class="myImg" id="myImg7" src="img/IMG_3239.JPG" alt="Dependencies" width="200" height="200"> 
+                <img class="myImg" id="myImg8" src="img/IMG_3246.JPG" alt="Dependencies" width="200" height="200"> 
+                <img class="myImg" id="myImg9" src="img/IMG_3247.JPG" alt="Dependencies" width="200" height="200"> 
 
-			
-		</div>
-	</div>
-
-    
-    <div class="skills section second" id="contacto">
-		<div class="container">
-			<h1>Contacto</h1>
-			<p> 
-				<p><b>Correo electrónico</b>:  capacitaciondradelcastillo@gmail.com </p>
-				<p><b>Teléfono: </b>224820200</p>
-				<p><b>Dirección de la sala: </b>Rafael cañas 237</p>
-				<p><b>Dirección oficina: </b>Rafael cañas 270 </p>
- 				<p>A pasos de metro Salvador, Providencia</p>
-			</p>				
-</div>
-<div id="map" style="width:400px;height:400px">
-			</div>	
-</body>
-			
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                    <!-- The Close Button -->
+                    <span class="close" onclick="document.getElementById('myModal').style.display = 'none'">&times;</span>
+                    <!-- Modal Content (The Image) -->
+                    <img class="modal-content" id="img01">
+                    <!-- Modal Caption (Image Text) -->
+                    <div id="caption"></div>
+                </div>
+            <p/>
+            </div>
+        </div>
 
 
-	<!-- Quote -->
-	<div class="quote">
-		<div class="units-50">
-			<h1>*</h1>
-		</div>
-	</div>
-
-	<footer>
-		<div class="container">
-			<div class="units-row">
-			    <div class="unit-50">
-			    </div>
-			    <div class="unit-50">
-					<ul class="social list-flat right">
-						<li><a href="https://www.facebook.com/Coaching-EUNACOM-1419078564848084/"><i class="fa fa-facebook"></i></a></li>
-						<li><a href="mailto:capacitaciondradelcastillo@gmail.com"><i class="fa fa-send"></i></a></li>
-						
-				
-					</ul>
-			    </div>
-			</div>	
-		</div>
-		
-	</footer>
-    
-    
-    
-    <script>
-      function initMap() {
-        var uluru = {lat: -33.4331219, lng: -70.6224017};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAL5fir1y9xL4wHD9-y3-wzYD3UjpIDkoU&callback=initMap">
-    </script>
 
 
-	<!-- Javascript -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/typed.min.js"></script>
-    <script src="js/kube.min.js"></script>
-    <script src="js/site.js"></script>
-    <script>
-		function newTyped(){}$(function(){$("#typed").typed({
-		// Change to edit type effect
-		strings: ["coaching", "EUNACOM", "capacitación"],
 
-		typeSpeed:90,backDelay:700,contentType:"html",loop:!0,resetCallback:function(){newTyped()}}),$(".reset").click(function(){$("#typed").typed("reset")})});
-    </script>
-</body>
+
+        <!-- Cursos -->
+        <div class="award section second" id="cursos">
+            <div class="container">
+                <h1>Cursos</h1>
+                <p>Se impartirán 3 cursos de entre 15 - 20 personas cada uno, de 8 horas semanales, en los siguientes horarios:</p>	
+
+                <li>Martes y jueves: 09:00-13:00 hrs</li>
+                <li>Miércoles- viernes: 09:00-13:00 hrs</li>
+                <li>Sábado: 09:00-18:00 hrs</li>
+                <p>Incluye: el material, Coffee Break y 45 min de asesoría por cada alumno para repasar un tema a elección ( por una vez durante el curso) , dia y lugar a coordinar por Bárbara Del Castillo y alumno(a).</p>
+                <p><b>Inicio en el segundo semestre del 2017 (desde el 1 de Agosto a 9 de Diciembre)</b></p>
+            </div>
+        </div>
+        <!-- Technical Skills -->
+        <div class="skills section second" id="valores">
+            <div class="container">
+                <h1>Valores del curso</h1>
+                <p>
+                <li>Pago contado en transferencia bancaria o depósito en efectivo: $710.000 pesos</li>
+                <li>Pago con tarjeta de crédito: $810.000 pesos</li>
+
+                </p>
+            </div>
+        </div>
+
+        <!-- Condiciones -->
+        <div class="work section second" id="condiciones">
+            <div class="container">
+                <h1>Condiciones<br>generales</h1>
+                <p>Los cursos constan de 8 horas semanales cada uno (3 cursos en total), según el temario el cual será entregado una vez inscrito junto con la factura. Este temario podría sufrir variaciones durante el semestre las que se informarán con anticipación.
+                <li>Las clases las realizará Dra. Bárbara Del Castillo Ruiz.</li>
+                <li>El material será enviado semanalmente a los correos electronicos de los alumnos inscritos.</li>
+                <li>La realización del curso no asegura la aprobación de EUNACOM.</li>
+                </p>
+                <p>Para poder acceder a un cupo del curso, se deberá cancelar la totalidad de su valor mediante trasferencia electronica de fondos (TEF), depósito bancario o tarjeta de crédito. No se aceptan cheques.</p>
+                <p>Una vez cancelado el curso, en caso que el alumno tuviera que retirarse o abandonar, no se hará devolución del dinero pagado, pero seguirá recibiendo la información via e-mail y el cupo se respetará durante todo la jornada pudiendo transferir su lugar a otro alumno o alumna previo acuerdo con Bárbara Del Castillo.</p>
+
+
+            </div>
+        </div>
+
+
+        <div class="skills section second" id="contacto">
+            <div class="container">
+                <h1>Contacto</h1>
+                <p><b>Correo electrónico:</b> capacitaciondradelcastillo@gmail.com </p>
+                <p><b>Teléfono:</b>224820200</p>
+                <p><b>Dirección de la sala:</b>Rafael cañas 237</p>
+                <p><b>Dirección oficina:</b>Rafael cañas 270 </p>
+                <p>A pasos de metro Salvador, Providencia</p>
+            </div>
+        </div>
+        <div class="quote">
+            <div id="map" style="width:600px;height:400px" ></div>	
+        </div> 
+
+
+        <!-- Quote -->
+        <div class="quote">
+            <div class="units-50">
+                <h1>*</h1>
+            </div>
+        </div>
+
+
+        <footer>
+            <div class="container">
+                <div class="units-row">
+                    <div class="unit-50">
+                    </div>
+                    <div class="unit-50">
+                        <ul class="social list-flat right">
+                            <li><a href="https://www.facebook.com/Coaching-EUNACOM-1419078564848084/"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="mailto:capacitaciondradelcastillo@gmail.com"><i class="fa fa-send"></i></a></li>
+                        </ul>
+                    </div>
+                </div>	
+            </div>
+
+        </footer>
+
+
+
+        <script>
+            function initMap() {
+                var uluru = {lat: -33.4331219, lng: -70.6224017};
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 15,
+                    center: uluru
+                });
+                var marker = new google.maps.Marker({
+                    position: uluru,
+                    map: map
+                });
+            }
+        </script>
+        <script async defer
+                src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAL5fir1y9xL4wHD9-y3-wzYD3UjpIDkoU&callback=initMap">
+        </script>
+
+
+        <!-- Javascript -->
+        <script src="js/jquery.min.js"></script>
+        <script src="js/typed.min.js"></script>
+        <script src="js/kube.min.js"></script>
+        <script src="js/site.js"></script>
+        <script>
+            function newTyped() {}
+            $(function () {
+                $("#typed").typed({
+                    // Change to edit type effect
+                    strings: ["coaching", "EUNACOM", "capacitación"],
+                    typeSpeed: 90, backDelay: 700, contentType: "html", loop: !0, resetCallback: function () {
+                        newTyped()
+                    }}), $(".reset").click(function () {
+                    $("#typed").typed("reset")
+                })
+            });
+            // Get the modal
+            var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+            var img = document.getElementById('myImg');
+            var img2 = document.getElementById('myImg2');
+            var img3 = document.getElementById('myImg3');
+            var img4 = document.getElementById('myImg4');
+            var img5 = document.getElementById('myImg5');
+            var img6 = document.getElementById('myImg6');
+            var img7 = document.getElementById('myImg7');
+            var img8 = document.getElementById('myImg8');
+            var img9 = document.getElementById('myImg9');
+
+            var modalImg = document.getElementById("img01");
+            var captionText = document.getElementById("caption");
+            img.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+            img2.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+            img3.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+            img4.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+            img5.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+            img6.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+            img7.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+            img8.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+            img9.onclick = function () {
+                modal.style.display = "block";
+                modalImg.src = this.src;
+                captionText.innerHTML = this.alt;
+            }
+
+// Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+            span.onclick = function () {
+                modal.style.display = "none";
+            }
+        </script>
+
+    </body>
 </html>
